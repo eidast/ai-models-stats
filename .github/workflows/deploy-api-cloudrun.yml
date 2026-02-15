@@ -25,6 +25,7 @@ env:
   ARTIFACT_REPO: cloudrun
   IMAGE_NAME: ai-models-api
   RUNTIME_SERVICE_ACCOUNT: ai-models-runtime@sq-websites.iam.gserviceaccount.com
+  CLOUDSQL_INSTANCE: starquantix-databases:us-central1:rombell
 
 jobs:
   deploy:
@@ -62,4 +63,5 @@ jobs:
             --allow-unauthenticated \
             --port=8080 \
             --service-account=${{ env.RUNTIME_SERVICE_ACCOUNT }} \
+            --add-cloudsql-instances=${{ env.CLOUDSQL_INSTANCE }} \
             --set-secrets=DATABASE_URL=SQ_MODELS_DATABASE_URL:latest
