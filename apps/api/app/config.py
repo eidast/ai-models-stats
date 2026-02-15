@@ -7,8 +7,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 from functools import lru_cache
 
-# Load .env from project root
-load_dotenv(Path(__file__).resolve().parents[3] / ".env")
+# Load .env from repo root when present (local dev). In containers/Cloud Run there is no .env.
+try:
+    load_dotenv(Path(__file__).resolve().parents[3] / ".env")
+except Exception:
+    # Avoid crashing in minimal container layouts.
+    pass
 
 
 @lru_cache
