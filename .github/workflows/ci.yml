@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm -r lint --if-present
+        run: pnpm -r --if-present lint
 
       - name: Build web
         run: pnpm --filter web build
