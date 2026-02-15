@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Provider",
+  "type": "object",
+  "required": ["id", "name", "pricingUrl", "lastUpdated"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$", "maxLength": 50 },
+    "name": { "type": "string", "maxLength": 255 },
+    "pricingUrl": { "type": "string", "format": "uri", "maxLength": 500 },
+    "apiDocsUrl": { "type": "string", "format": "uri", "maxLength": 500 },
+    "lastUpdated": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ai-models-stats",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "cd apps/api && ../../.venv/bin/uvicorn app.main:app --reload --port 8080",
+    "lint": "pnpm -r lint",
+    "db:migrate": "./.venv/bin/python -m jobs.scrape.run_migrate",
+    "db:seed": "./.venv/bin/python -m jobs.scrape.run_seed",
+    "db:scrape": "./.venv/bin/python -m jobs.scrape.run_scrape"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.14.2"
+}

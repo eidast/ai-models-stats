@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "models": "Models",
+    "compare": "Compare"
+  },
+  "home": {
+    "title": "AI Models Stats",
+    "subtitle": "Compare LLM models — costs, capabilities, limits",
+    "cta": "Browse Models"
+  },
+  "models": {
+    "title": "Models",
+    "filterProvider": "Provider",
+    "filterCapability": "Capability",
+    "filterType": "Type",
+    "includeDeprecated": "Include deprecated",
+    "inputPerM": "Input (per 1M tokens)",
+    "outputPerM": "Output (per 1M tokens)",
+    "cachePerM": "Cache (per 1M tokens)",
+    "context": "Context",
+    "deprecated": "Deprecated",
+    "favorites": "Favorites",
+    "compare": "Compare"
+  },
+  "compare": {
+    "title": "Compare Models",
+    "selectModels": "Select up to 5 models to compare",
+    "addModel": "Add model"
+  },
+  "footer": {
+    "developedBy": "Developed by",
+    "tagline": "AI Models Stats — Compare LLM costs & capabilities. Data updated daily."
+  },
+  "taskCosts": {
+    "title": "Estimated cost by task",
+    "clusterText": "Text tasks",
+    "clusterImage": "Image generation",
+    "clusterAudio": "Audio",
+    "clusterVideo": "Video",
+    "summarize1k": "Summarize 1K words",
+    "summarize10k": "Summarize 10K words",
+    "translate500": "Translate 500 words",
+    "codeReview": "Code review (100 lines)",
+    "image1": "Generate 1 image",
+    "tts1min": "TTS 1 minute",
+    "transcribe1min": "Transcribe 1 minute",
+    "video1sec": "Generate 1 sec video"
+  }
+}

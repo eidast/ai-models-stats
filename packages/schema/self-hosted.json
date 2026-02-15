@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SelfHosted",
+  "type": "object",
+  "properties": {
+    "minRamGb": { "type": "integer", "minimum": 0 },
+    "minVramGb": { "type": "integer", "minimum": 0 },
+    "recommendedGpu": { "type": "string" },
+    "runsOn": { "type": "array", "items": { "type": "string" } },
+    "quantization": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  }
+}

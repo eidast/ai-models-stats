@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "models": "Modelos",
+    "compare": "Comparar"
+  },
+  "home": {
+    "title": "AI Models Stats",
+    "subtitle": "Compara modelos LLM — costos, capacidades, límites",
+    "cta": "Ver Modelos"
+  },
+  "models": {
+    "title": "Modelos",
+    "filterProvider": "Proveedor",
+    "filterCapability": "Capacidad",
+    "filterType": "Tipo",
+    "includeDeprecated": "Incluir deprecados",
+    "inputPerM": "Entrada (por 1M tokens)",
+    "outputPerM": "Salida (por 1M tokens)",
+    "cachePerM": "Cache (por 1M tokens)",
+    "context": "Contexto",
+    "deprecated": "Deprecado",
+    "favorites": "Favoritos",
+    "compare": "Comparar"
+  },
+  "compare": {
+    "title": "Comparar Modelos",
+    "selectModels": "Selecciona hasta 5 modelos para comparar",
+    "addModel": "Añadir modelo"
+  },
+  "footer": {
+    "developedBy": "Desarrollado por",
+    "tagline": "AI Models Stats — Compara costos y capacidades de LLM. Datos actualizados diariamente."
+  },
+  "taskCosts": {
+    "title": "Costo estimado por tarea",
+    "clusterText": "Tareas de texto",
+    "clusterImage": "Generación de imágenes",
+    "clusterAudio": "Audio",
+    "clusterVideo": "Video",
+    "summarize1k": "Resumir 1K palabras",
+    "summarize10k": "Resumir 10K palabras",
+    "translate500": "Traducir 500 palabras",
+    "codeReview": "Revisión de código (100 líneas)",
+    "image1": "Generar 1 imagen",
+    "tts1min": "TTS 1 minuto",
+    "transcribe1min": "Transcribir 1 minuto",
+    "video1sec": "Generar 1 seg de video"
+  }
+}

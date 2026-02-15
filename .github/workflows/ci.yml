@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm -r lint --if-present
+
+      - name: Build web
+        run: pnpm --filter web build
+        env:
+          NEXT_PUBLIC_API_URL: https://api.example.com
+
+  api-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ai_models_stats_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install API deps
+        working-directory: apps/api
+        run: pip install -r requirements.txt
+
+      - name: Run migrations
+        run: python -m jobs.scrape.run_migrate
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ai_models_stats_test
+
+      - name: Seed
+        run: python -m jobs.scrape.run_seed
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ai_models_stats_test
+
+      - name: Start API
+        working-directory: apps/api
+        run: uvicorn app.main:app --host 0.0.0.0 --port 8080 &
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/ai_models_stats_test
+
+      - name: Wait and test API
+        run: |
+          sleep 5
+          curl -sf http://localhost:8080/health
+          curl -sf http://localhost:8080/api/models | head -c 200

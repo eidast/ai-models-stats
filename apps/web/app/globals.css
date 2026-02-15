@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Force dark theme for form controls and ensure contrast */
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  /* Select dropdown options - dark bg, light text for readability */
+  select option {
+    background-color: #0f172a;
+    color: #f1f5f9;
+  }
+
+  /* Ensure body text has sufficient contrast */
+  body {
+    color: #f1f5f9;
+  }
+}

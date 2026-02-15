@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Model",
+  "type": "object",
+  "required": ["id", "providerId", "name", "type", "modalities", "capabilities", "pricing", "sourceUrl", "lastUpdated"],
+  "properties": {
+    "id": { "type": "string", "maxLength": 100 },
+    "providerId": { "type": "string", "maxLength": 50 },
+    "name": { "type": "string", "maxLength": 255 },
+    "apiId": { "type": "string", "maxLength": 100 },
+    "type": { "type": "string", "enum": ["text", "image", "audio", "video", "embedding", "multimodal"] },
+    "modalities": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "contextLength": { "type": "integer", "minimum": 0 },
+    "maxOutputTokens": { "type": "integer", "minimum": 0 },
+    "deprecated": { "type": "boolean", "default": false },
+    "deprecationDate": { "type": "string", "format": "date" },
+    "pricing": { "$ref": "pricing.json" },
+    "selfHosted": { "$ref": "self-hosted.json" },
+    "sourceUrl": { "type": "string", "format": "uri", "maxLength": 500 },
+    "lastUpdated": { "type": "string", "format": "date-time" }
+  }
+}

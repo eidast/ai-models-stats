@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pricing",
+  "type": "object",
+  "properties": {
+    "tier": { "type": "string", "enum": ["standard", "batch", "free"] },
+    "inputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "outputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "cacheInputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "batchInputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "batchOutputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "imageInputPerImage": { "type": "number", "minimum": 0 },
+    "imageOutputPerImage": { "type": "number", "minimum": 0 },
+    "audioInputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "audioOutputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "videoPerSecond": { "type": "number", "minimum": 0 },
+    "freeTierInputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "freeTierOutputPerMillionTokens": { "type": "number", "minimum": 0 },
+    "notes": { "type": "string" }
+  }
+}

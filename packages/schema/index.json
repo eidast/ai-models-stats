@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "AI Models Stats schema exports",
+  "oneOf": [
+    { "$ref": "provider.json" },
+    { "$ref": "model.json" }
+  ]
+}
