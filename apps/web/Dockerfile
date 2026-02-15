@@ -30,4 +30,6 @@ COPY --from=builder /app/apps/web/.next/static ./.next/static
 
 ENV PORT=3000
 EXPOSE 3000
-CMD ["node", "server.js"]
+
+# Next.js standalone output writes the entrypoint at apps/web/server.js.
+CMD ["node", "apps/web/server.js"]
