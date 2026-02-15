@@ -4,8 +4,11 @@ import { routing } from "./routing";
 
 const intlMiddleware = createMiddleware(routing);
 
-// Friendly redirects for Spanish slugs (avoid 404s / broken console logs)
+// Root and locale roots → models; Spanish slugs (avoid 404s)
 const REDIRECTS: Record<string, string> = {
+  "/": "/models",
+  "/en": "/en/models",
+  "/es": "/es/models",
   "/modelos": "/models",
   "/comparar": "/compare",
   "/es/modelos": "/es/models",

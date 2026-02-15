@@ -16,6 +16,7 @@ A reference website for comparing LLM models across providers — costs, capabil
 | [OPENAI_PRICING](docs/OPENAI_PRICING.md) | OpenAI pricing page structure (developers.openai.com) |
 | [MISTRAL_PRICING](docs/MISTRAL_PRICING.md) | Mistral AI model ecosystem and pricing |
 | [ANTHROPIC_PRICING](docs/ANTHROPIC_PRICING.md) | Anthropic (Claude) pricing structure |
+| [CICD_AND_CONFIG](docs/CICD_AND_CONFIG.md) | CI/CD pipelines and configuration |
 
 ## Tech Stack
 

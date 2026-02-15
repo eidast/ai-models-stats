@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useRouter } from "@/i18n/routing";
 import type { Model } from "@/lib/api";
 import { TaskCostTable } from "@/components/TaskCostTable";
+import { PricingBarChart, TaskCostBarChart } from "@/components/ComparisonCharts";
 
 function formatPrice(n: number | undefined): string {
   if (n == null) return "—";
@@ -75,6 +76,26 @@ export function ComparePageClient({
 
       {models.length > 0 ? (
         <>
+          {/* Charts — visual comparison first */}
+          <div className="grid gap-8 mb-10 md:grid-cols-1">
+            <div className="p-4 bg-starquantix-navy-light rounded-lg border border-starquantix-navy-lighter">
+              <h2 className="text-lg font-semibold mb-4 text-slate-200">
+                {t("chartPricing")}
+              </h2>
+              <PricingBarChart models={models} />
+            </div>
+            <div className="p-4 bg-starquantix-navy-light rounded-lg border border-starquantix-navy-lighter">
+              <h2 className="text-lg font-semibold mb-4 text-slate-200">
+                {t("chartTaskCost")}
+              </h2>
+              <TaskCostBarChart models={models} />
+            </div>
+          </div>
+
+          {/* Tables — detailed numbers */}
+          <h2 className="text-lg font-semibold mb-4 text-slate-200">
+            {t("tableDetails")}
+          </h2>
           <div className="overflow-x-auto mb-8">
             <table className="w-full text-sm">
               <thead>

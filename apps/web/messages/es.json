@@ -4,11 +4,6 @@
     "models": "Modelos",
     "compare": "Comparar"
   },
-  "home": {
-    "title": "AI Models Stats",
-    "subtitle": "Compara modelos LLM — costos, capacidades, límites",
-    "cta": "Ver Modelos"
-  },
   "models": {
     "title": "Modelos",
     "filterProvider": "Proveedor",
@@ -26,7 +21,10 @@
   "compare": {
     "title": "Comparar Modelos",
     "selectModels": "Selecciona hasta 5 modelos para comparar",
-    "addModel": "Añadir modelo"
+    "addModel": "Añadir modelo",
+    "chartPricing": "Precios por 1M tokens (Entrada, Salida, Cache)",
+    "chartTaskCost": "Costo: Resumir 1K palabras",
+    "tableDetails": "Comparación detallada"
   },
   "footer": {
     "developedBy": "Desarrollado por",

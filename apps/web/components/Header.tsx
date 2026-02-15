@@ -10,7 +10,6 @@ export function Header() {
   const pathname = usePathname();
 
   const nav = [
-    { href: "/", label: t("home") },
     { href: "/models", label: t("models") },
     { href: "/compare", label: t("compare") },
   ];
@@ -18,7 +17,7 @@ export function Header() {
   return (
     <header className="border-b border-starquantix-navy-lighter bg-starquantix-navy-light backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/models" className="flex items-center gap-3">
           <Image
             src="/starquantix-logo.webp"
             alt="StarQuantix"
@@ -37,7 +36,7 @@ export function Header() {
               key={href}
               href={href}
               className={`transition-colors ${
-                pathname === href || (href !== "/" && pathname.startsWith(href))
+                pathname === href || pathname.startsWith(href)
                   ? "text-starquantix-blue-light font-medium"
                   : "text-slate-300 hover:text-white"
               }`}
