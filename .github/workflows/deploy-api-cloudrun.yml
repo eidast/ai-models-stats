@@ -1,0 +1,63 @@
+name: Deploy API (Cloud Run)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/api/**"
+      - "jobs/**"
+      - "packages/schema/**"
+      - "packages/shared-types/**"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - ".github/workflows/deploy-api-cloudrun.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PROJECT_ID: sq-websites
+  REGION: us-central1
+  SERVICE_NAME: ai-models-api
+  ARTIFACT_REPO: cloudrun
+  IMAGE_NAME: ai-models-api
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Workload Identity Federation (recommended; no JSON keys)
+      - id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure docker for Artifact Registry
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Build & push image
+        run: |
+          IMAGE_URI=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker build -f apps/api/Dockerfile -t "$IMAGE_URI" .
+          docker push "$IMAGE_URI"
+          echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+            --project=${{ env.PROJECT_ID }} \
+            --region=${{ env.REGION }} \
+            --image="$IMAGE_URI" \
+            --platform=managed \
+            --allow-unauthenticated \
+            --port=8080 \
+            --set-secrets=DATABASE_URL=SQ_MODELS_DATABASE_URL:latest
