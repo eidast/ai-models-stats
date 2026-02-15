@@ -24,6 +24,7 @@ env:
   SERVICE_NAME: ai-models-api
   ARTIFACT_REPO: cloudrun
   IMAGE_NAME: ai-models-api
+  RUNTIME_SERVICE_ACCOUNT: ai-models-runtime@sq-websites.iam.gserviceaccount.com
 
 jobs:
   deploy:
@@ -60,4 +61,5 @@ jobs:
             --platform=managed \
             --allow-unauthenticated \
             --port=8080 \
+            --service-account=${{ env.RUNTIME_SERVICE_ACCOUNT }} \
             --set-secrets=DATABASE_URL=SQ_MODELS_DATABASE_URL:latest
