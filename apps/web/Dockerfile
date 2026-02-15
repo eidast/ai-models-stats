@@ -24,9 +24,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Ensure Cloud Run can reach the server (bind to all interfaces)
 ENV HOSTNAME=0.0.0.0
 
-COPY --from=builder /app/apps/web/public ./public
+COPY --from=builder /app/apps/web/public ./apps/web/public
 COPY --from=builder /app/apps/web/.next/standalone ./
-COPY --from=builder /app/apps/web/.next/static ./.next/static
+# server.js runs from /app/apps/web, so static assets must be under apps/web/.next/static
+COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
 
 ENV PORT=3000
 EXPOSE 3000
