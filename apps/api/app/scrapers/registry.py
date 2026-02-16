@@ -5,6 +5,7 @@ from app.scrapers.deepseek import DeepSeekScraper
 from app.scrapers.google import GoogleScraper
 from app.scrapers.mistral import MistralScraper
 from app.scrapers.openai import OpenAIScraper
+from app.scrapers.xai import XAIScraper
 
 SCRAPERS: list[type[BaseScraper]] = [
     OpenAIScraper,
@@ -12,4 +13,5 @@ SCRAPERS: list[type[BaseScraper]] = [
     GoogleScraper,
     MistralScraper,
     DeepSeekScraper,
+    XAIScraper,
 ]

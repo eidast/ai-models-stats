@@ -32,7 +32,8 @@ async def seed():
             ('anthropic', 'Anthropic', 'https://platform.claude.com/docs/en/about-claude/pricing', 'https://docs.anthropic.com', $1),
             ('google', 'Google', 'https://ai.google.dev/gemini-api/docs/pricing', 'https://ai.google.dev', $1),
             ('mistral', 'Mistral AI', 'https://mistral.ai/pricing#api', 'https://docs.mistral.ai', $1),
-            ('deepseek', 'DeepSeek', 'https://api-docs.deepseek.com/quick_start/pricing', 'https://api-docs.deepseek.com', $1)
+            ('deepseek', 'DeepSeek', 'https://api-docs.deepseek.com/quick_start/pricing', 'https://api-docs.deepseek.com', $1),
+            ('xai', 'xAI (Grok)', 'https://docs.x.ai/developers/models', 'https://docs.x.ai', $1)
         ON CONFLICT (id) DO UPDATE SET
             name = EXCLUDED.name,
             pricing_url = EXCLUDED.pricing_url,
@@ -128,7 +129,7 @@ async def seed():
         )
 
     await conn.close()
-    print("Seed completed: 5 providers, 3 models")
+    print("Seed completed: 6 providers, 3 models")
 
 
 if __name__ == "__main__":
